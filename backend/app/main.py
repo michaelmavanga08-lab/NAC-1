@@ -1,10 +1,14 @@
 from fastapi import FastAPI,Depends,HTTPException
+from .routers import projects_router, tasks_router, resources_router
 from sqlalchemy.orm import Session
 from .database import Base,engine,get_db
 from .models import Project,Task,Resource
 from .schemas import ProjectCreate,ProjectOut,TaskCreate,TaskOut,ResourceCreate,ResourceOut
 Base.metadata.create_all(bind=engine)
 app=FastAPI(title="NAC API",version="3.3.16")
+app.include_router(projects_router)
+app.include_router(tasks_router)
+app.include_router(resources_router)
 @app.get("/health")
 def health(): return {"status":"ok","product":"NAC","version":"3.3.16"}
 @app.post("/api/v1/projects",response_model=ProjectOut,status_code=201)
