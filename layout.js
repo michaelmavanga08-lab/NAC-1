@@ -1,1 +1,0 @@
-export const metadata={title:"NAC — Ndaku nayo Architecture & Construction"};export default function RootLayout({children}){return <html lang="fr"><body>{children}</body></html>}
